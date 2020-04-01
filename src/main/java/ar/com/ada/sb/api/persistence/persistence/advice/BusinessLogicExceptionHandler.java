@@ -1,15 +1,16 @@
 package ar.com.ada.sb.api.persistence.persistence.advice;
 
 
-
 import ar.com.ada.sb.api.persistence.persistence.exception.ApiEntityError;
 import ar.com.ada.sb.api.persistence.persistence.exception.ApiErrorsResponseBody;
-import ar.com.ada.sb.api.persistence.exception.BusinessLogicException;
+
+import ar.com.ada.sb.api.persistence.persistence.exception.BusinessLogicException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.NativeWebRequest;
+
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
 @RestControllerAdvice
@@ -31,4 +32,4 @@ public class BusinessLogicExceptionHandler {
                 .status(httpStatus)
                 .body(apiErrorsResponseBody);
     }
-    }
+}

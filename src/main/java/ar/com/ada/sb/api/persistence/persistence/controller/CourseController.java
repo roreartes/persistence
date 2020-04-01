@@ -1,6 +1,9 @@
 package ar.com.ada.sb.api.persistence.persistence.controller;
 
 import ar.com.ada.sb.api.persistence.persistence.model.dto.CourseDto;
+import ar.com.ada.sb.api.persistence.persistence.services.CourseServices;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,9 +17,14 @@ import java.math.BigDecimal;
 @RequestMapping("/courses")
 public class CourseController {
 
-    @PostMapping({"", "/"})
-    public ResponseEntity newCourse(@RequestBody @Valid CourseDto courseDto){
+    @Autowired @Qualifier("courseServices")
+    private CourseServices courseServices;
 
-        return ResponseEntity.ok().body(null);
+
+    @PostMapping({"", "/"})
+    public ResponseEntity newCourse(@RequestBody @Valid CourseDto dto){
+
+        CourseDto save = courseServices.save(dto);
+        return ResponseEntity.ok().body(save);
     }
     }
